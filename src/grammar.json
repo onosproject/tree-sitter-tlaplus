@@ -1,5 +1,5 @@
 {
-  "name": "tlaplus",
+  "name": "tlapp",
   "word": "identifier",
   "rules": {
     "source_file": {
@@ -113,8 +113,13 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "double_line"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "double_line"
+          },
+          "named": true,
+          "value": "trailer_line"
         }
       ]
     },
@@ -590,6 +595,31 @@
       "type": "PATTERN",
       "value": "\\w*[A-Za-z]\\w*"
     },
+    "mod_identifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "."
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
+          }
+        }
+      ]
+    },
     "extends": {
       "type": "SEQ",
       "members": [
@@ -598,39 +628,34 @@
           "value": "EXTENDS"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
+          "type": "ALIAS",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
                 "type": "SYMBOL",
-                "name": "identifier"
+                "name": "mod_identifier"
               },
-              "named": true,
-              "value": "identifier_ref"
-            },
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "identifier"
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ","
                     },
-                    "named": true,
-                    "value": "identifier_ref"
-                  }
-                ]
+                    {
+                      "type": "SYMBOL",
+                      "name": "mod_identifier"
+                    }
+                  ]
+                }
               }
-            }
-          ]
+            ]
+          },
+          "named": true,
+          "value": "identifier_ref"
         }
       ]
     },
@@ -1297,7 +1322,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "mod_identifier"
           },
           "named": true,
           "value": "identifier_ref"

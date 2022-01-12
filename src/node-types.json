@@ -1520,6 +1520,25 @@
     }
   },
   {
+    "type": "identifier_ref",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "mod_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "if_then_else",
     "named": true,
     "fields": {
@@ -2159,6 +2178,21 @@
     "fields": {}
   },
   {
+    "type": "mod_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "module",
     "named": true,
     "fields": {
@@ -2182,15 +2216,15 @@
           "named": true
         },
         {
-          "type": "double_line",
-          "named": true
-        },
-        {
           "type": "extends",
           "named": true
         },
         {
           "type": "header_line",
+          "named": true
+        },
+        {
+          "type": "trailer_line",
           "named": true
         }
       ]
@@ -4413,10 +4447,6 @@
     "named": true
   },
   {
-    "type": "double_line",
-    "named": true
-  },
-  {
     "type": "extramodular_text",
     "named": true
   },
@@ -4438,10 +4468,6 @@
   },
   {
     "type": "identifier",
-    "named": true
-  },
-  {
-    "type": "identifier_ref",
     "named": true
   },
   {
@@ -4526,6 +4552,10 @@
   },
   {
     "type": "sup_hash",
+    "named": true
+  },
+  {
+    "type": "trailer_line",
     "named": true
   },
   {

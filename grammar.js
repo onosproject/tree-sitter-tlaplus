@@ -65,7 +65,7 @@ function postfixOpPrec(level, expr, symbol) {
 }
 
 module.exports = grammar({
-  name: 'tlaplus',
+  name: 'tlapp',
 
   externals: $ => [
     $.extramodular_text,
@@ -171,7 +171,7 @@ module.exports = grammar({
       alias($.single_line, $.header_line),
       optional($.extends),
       repeat($._unit),
-      $.double_line
+      alias($.double_line, $.trailer_line)
     ),
 
     // Line of ---------- of length at least 4
@@ -226,9 +226,14 @@ module.exports = grammar({
     // If only one character long, must be letter (not number or _)
     identifier: $ => /\w*[A-Za-z]\w*/,
 
+    mod_identifier: $ => seq(
+      $.identifier,
+      repeat(seq('.', $.identifier))
+    ),
+
     // EXTENDS Naturals, FiniteSets, Sequences
     extends: $ => seq(
-      'EXTENDS', commaList1(alias($.identifier, $.identifier_ref))
+      'EXTENDS', alias(commaList1($.mod_identifier), $.identifier_ref)
     ),
 
     // A module-level definition
@@ -353,7 +358,7 @@ module.exports = grammar({
     // INSTANCE ModuleName WITH x <- y, w <- z
     instance: $ => seq(
       'INSTANCE',
-      alias($.identifier, $.identifier_ref),
+      alias($.mod_identifier, $.identifier_ref),
       optional(seq('WITH', commaList1($.substitution)))
     ),
 
