@@ -286,10 +286,6 @@
         "named": true
       },
       {
-        "type": "single_line",
-        "named": true
-      },
-      {
         "type": "theorem",
         "named": true
       },
@@ -1351,7 +1347,7 @@
       "required": true,
       "types": [
         {
-          "type": "identifier_ref",
+          "type": "module_path",
           "named": true
         }
       ]
@@ -1514,25 +1510,6 @@
         },
         {
           "type": "value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "identifier_ref",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "mod_identifier",
           "named": true
         }
       ]
@@ -1956,7 +1933,7 @@
       "required": true,
       "types": [
         {
-          "type": "identifier_ref",
+          "type": "module_path",
           "named": true
         },
         {
@@ -2178,21 +2155,6 @@
     "fields": {}
   },
   {
-    "type": "mod_identifier",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "module",
     "named": true,
     "fields": {
@@ -2209,7 +2171,7 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "_unit",
@@ -2217,14 +2179,6 @@
         },
         {
           "type": "extends",
-          "named": true
-        },
-        {
-          "type": "header_line",
-          "named": true
-        },
-        {
-          "type": "trailer_line",
           "named": true
         }
       ]
@@ -2287,6 +2241,21 @@
       "types": [
         {
           "type": "def_eq",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "module_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -4472,11 +4441,11 @@
     "named": true
   },
   {
-    "type": "header_line",
+    "type": "identifier",
     "named": true
   },
   {
-    "type": "identifier",
+    "type": "identifier_ref",
     "named": true
   },
   {
@@ -4544,10 +4513,6 @@
     "named": true
   },
   {
-    "type": "single_line",
-    "named": true
-  },
-  {
     "type": "slashslash",
     "named": true
   },
@@ -4557,10 +4522,6 @@
   },
   {
     "type": "sup_hash",
-    "named": true
-  },
-  {
-    "type": "trailer_line",
     "named": true
   },
   {

@@ -166,19 +166,19 @@ module.exports = grammar({
 
     // Top-level module declaration
     module: $ => seq(
-      alias($.single_line, $.header_line),
+      $._single_line,
       'MODULE', field('name', $.identifier),
-      alias($.single_line, $.header_line),
+      $._single_line,
       optional($.extends),
       repeat($._unit),
-      alias($.double_line, $.trailer_line)
+      $._double_line
     ),
 
     // Line of ---------- of length at least 4
-    single_line: $ => /-----*/,
+    _single_line: $ => /-----*/,
 
     // Line of =========== of length at least 4
-    double_line: $ => /=====*/,
+    _double_line: $ => /=====*/,
 
     // Various syntactic elements and their unicode equivalents
     def_eq:             $ => choice('==', '≜'),
@@ -226,14 +226,14 @@ module.exports = grammar({
     // If only one character long, must be letter (not number or _)
     identifier: $ => /\w*[A-Za-z]\w*/,
 
-    mod_identifier: $ => seq(
+    module_path: $ => seq(
       $.identifier,
       repeat(seq('/', $.identifier))
     ),
 
     // EXTENDS Naturals, FiniteSets, Sequences
     extends: $ => seq(
-      'EXTENDS', alias(commaList1($.mod_identifier), $.identifier_ref)
+      'EXTENDS', commaList1($.module_path)
     ),
 
     // A module-level definition
@@ -247,7 +247,7 @@ module.exports = grammar({
       $.assumption,
       $.theorem,
       $.module,
-      $.single_line
+      $._single_line
     ),
     
     local_definition: $ => seq('LOCAL', $._definition),
@@ -358,7 +358,7 @@ module.exports = grammar({
     // INSTANCE ModuleName WITH x <- y, w <- z
     instance: $ => seq(
       'INSTANCE',
-      alias($.mod_identifier, $.identifier_ref),
+      $.module_path,
       optional(seq('WITH', commaList1($.substitution)))
     ),
 
