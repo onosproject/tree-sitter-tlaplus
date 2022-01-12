@@ -3126,6 +3126,11 @@
     }
   },
   {
+    "type": "slash",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -3812,6 +3817,10 @@
   },
   {
     "type": "...",
+    "named": false
+  },
+  {
+    "type": "/",
     "named": false
   },
   {
@@ -4536,10 +4545,6 @@
   },
   {
     "type": "single_line",
-    "named": true
-  },
-  {
-    "type": "slash",
     "named": true
   },
   {

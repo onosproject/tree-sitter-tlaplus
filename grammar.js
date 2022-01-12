@@ -228,7 +228,7 @@ module.exports = grammar({
 
     mod_identifier: $ => seq(
       $.identifier,
-      repeat(seq('.', $.identifier))
+      repeat(seq('/', $.identifier))
     ),
 
     // EXTENDS Naturals, FiniteSets, Sequences
